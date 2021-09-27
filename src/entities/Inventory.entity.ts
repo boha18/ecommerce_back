@@ -23,3 +23,4 @@ export class Inventory extends BaseEntity {
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.inventory)
   orderItem: OrderItem[];
 }
+
