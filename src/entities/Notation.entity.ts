@@ -4,7 +4,7 @@ import { Product } from './Product.entity';
 import { User } from './User.entity';
 
 @Entity()
-@Check('"note" > 0 AND "Note <= 5')
+@Check('"note" > 0 AND "note" <= 5')
 export class Notation extends BaseEntity {
   @Column({ nullable: true })
   note: number;
