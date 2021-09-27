@@ -7,11 +7,8 @@ import { User } from './User.entity';
 
 @Entity()
 export class OrderItem extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   quantity: number;
-
-  @Column({ nullable: true })
-  noted: boolean;
 
   @ManyToOne((type) => User, (user) => user.orderItem)
   user: User;

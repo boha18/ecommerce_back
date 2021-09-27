@@ -6,10 +6,10 @@ import { User } from './User.entity';
 @Entity()
 @Check('"note" > 0 AND "note" <= 5')
 export class Notation extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   note: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   noted: boolean;
 
   @ManyToOne((type) => User, (user) => user.note)

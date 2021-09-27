@@ -5,10 +5,10 @@ import { Product } from './Product.entity';
 
 @Entity()
 export class Category extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   description: string;
 
   @OneToOne((type) => File, (file) => file.user)

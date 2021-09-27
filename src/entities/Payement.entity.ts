@@ -7,10 +7,10 @@ export class Payement extends BaseEntity {
   @Column({ nullable: false })
   amount: number;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   provider: String;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   status: String;
 
   @OneToOne((type) => OrderTotal, (orderTotal) => orderTotal.payement)

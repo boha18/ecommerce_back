@@ -6,7 +6,7 @@ import { User } from './User.entity';
 
 @Entity()
 export class File extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   path: string;
 
   @Column({ nullable: true })
@@ -27,9 +27,6 @@ export class File extends BaseEntity {
   @OneToOne((type) => Category, (product) => product.icon)
   productIcon: Category;
 
-  @OneToMany(
-    (type) => InventoryImage,
-    (inventoryImage) => inventoryImage.file,
-  )
+  @OneToMany((type) => InventoryImage, (inventoryImage) => inventoryImage.file)
   inventoryImage: InventoryImage[];
 }

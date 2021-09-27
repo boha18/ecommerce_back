@@ -5,7 +5,7 @@ import { Payement } from './Payement.entity';
 
 @Entity()
 export class OrderTotal extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   total: number;
 
   @Column({ nullable: true })

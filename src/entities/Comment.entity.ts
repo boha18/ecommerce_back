@@ -5,10 +5,10 @@ import { User } from './User.entity';
 
 @Entity()
 export class Comment extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   text: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   written: boolean;
 
   @ManyToOne((type) => User, (user) => user.comment)

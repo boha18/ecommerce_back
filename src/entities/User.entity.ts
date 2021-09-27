@@ -18,19 +18,19 @@ import { UserPayement } from './UserPayement.entity';
 
 @Entity()
 export class User extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   firstName: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   lastName: string;
 
-  @Column({ nullable: true, unique: true })
+  @Column({ nullable: false, unique: true })
   email: string;
 
-  @Column({ nullable: true, unique: true })
+  @Column({ nullable: false, unique: true })
   telephone: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   hashed_password: string;
 
   @OneToMany((type) => Adress, (adress) => adress.user)

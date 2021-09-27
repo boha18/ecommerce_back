@@ -9,10 +9,10 @@ import { Notation } from './Notation.entity';
 
 @Entity()
 export class Product extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   description: string;
 
   @ManyToOne((type) => Category, (category) => category.product)

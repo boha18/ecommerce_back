@@ -5,13 +5,13 @@ import { User } from './User.entity';
 
 @Entity()
 export class Discount extends BaseEntity {
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   discountPercent: number;
 
   @ManyToOne((type) => User, (user) => user.comment)
