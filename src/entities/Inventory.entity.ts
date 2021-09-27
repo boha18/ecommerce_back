@@ -1,5 +1,6 @@
 import { Check, Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './Base.entity';
+import { InventoryImage } from './InventoryImage.entity';
 import { OrderItem } from './OrderItems.entity';
 import { Product } from './Product.entity';
 
@@ -22,5 +23,10 @@ export class Inventory extends BaseEntity {
 
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.inventory)
   orderItem: OrderItem[];
-}
 
+  @OneToMany(
+    (type) => InventoryImage,
+    (inventoryImage) => inventoryImage.inventory,
+  )
+  inventoryImage: InventoryImage[];
+}

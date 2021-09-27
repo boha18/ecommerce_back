@@ -14,6 +14,7 @@ import { Comment } from './Comment.entity';
 import { Favorite } from './Favorite.entity';
 import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
+import { UserPayement } from './UserPayement.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -50,4 +51,7 @@ export class User extends BaseEntity {
 
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.user)
   orderItem: OrderItem[];
+
+  @OneToMany((type) => UserPayement, (userPayement) => userPayement.user)
+  userPayement: UserPayement[];
 }
