@@ -11,6 +11,8 @@ export class Comment extends BaseEntity {
   @Column({ nullable: false })
   written: boolean;
 
+  /* Relations */
+
   @ManyToOne((type) => User, (user) => user.comment)
   user: User;
 

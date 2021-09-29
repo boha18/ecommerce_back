@@ -10,6 +10,8 @@ export class OrderItem extends BaseEntity {
   @Column({ nullable: false })
   quantity: number;
 
+  /* Relations */
+  
   @ManyToOne((type) => User, (user) => user.orderItem)
   user: User;
 

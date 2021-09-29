@@ -12,6 +12,8 @@ export class Notation extends BaseEntity {
   @Column({ nullable: false })
   noted: boolean;
 
+  /* Relations */
+
   @ManyToOne((type) => User, (user) => user.note)
   user: User;
 

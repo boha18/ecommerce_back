@@ -10,6 +10,8 @@ export class Adress extends BaseEntity {
   @Column({ nullable: false })
   longitude: number;
 
+  /* Relations */
+
   @ManyToOne((type) => User, (user) => user.adress)
   user: User;
 }

@@ -13,6 +13,8 @@ export class Payement extends BaseEntity {
   @Column({ nullable: true })
   status: String;
 
+  /* Relations */
+
   @OneToOne((type) => OrderTotal, (orderTotal) => orderTotal.payement)
   @JoinColumn()
   orderTotal: OrderTotal;

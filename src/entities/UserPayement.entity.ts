@@ -16,6 +16,8 @@ export class UserPayement extends BaseEntity {
   @Column({ nullable: false })
   payementType: String;
 
+  /* Relations */
+
   @ManyToOne((type) => User, (user) => user.userPayement)
   user: User;
 }

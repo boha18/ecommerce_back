@@ -18,6 +18,8 @@ export class File extends BaseEntity {
   @Column({ nullable: true })
   mime_type: string;
 
+  /* Relations */
+
   @OneToOne((type) => User, (user) => user.file)
   user: User;
 

@@ -11,6 +11,8 @@ export class Category extends BaseEntity {
   @Column({ nullable: false })
   description: string;
 
+  /* Relations */
+
   @OneToOne((type) => File, (file) => file.user)
   @JoinColumn()
   image: File;

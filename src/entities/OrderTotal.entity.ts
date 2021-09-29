@@ -11,6 +11,8 @@ export class OrderTotal extends BaseEntity {
   @Column({ nullable: true })
   description: String;
 
+  /* Relations */
+
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.orderTotal)
   orderItem: OrderItem[];
 

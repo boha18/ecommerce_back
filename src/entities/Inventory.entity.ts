@@ -18,6 +18,8 @@ export class Inventory extends BaseEntity {
   @Column({ nullable: true })
   quantity: number;
 
+  /* Relations */
+
   @ManyToOne((type) => Product, (product) => product.inventory)
   product: Product;
 

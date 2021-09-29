@@ -18,6 +18,8 @@ export class Product extends BaseEntity {
   @ManyToOne((type) => Category, (category) => category.product)
   category: Category;
 
+  /* Relations */
+  
   @OneToMany((type) => Comment, (comment) => comment.product)
   comment: Comment[];
 

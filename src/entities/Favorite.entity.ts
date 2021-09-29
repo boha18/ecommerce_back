@@ -5,6 +5,7 @@ import { User } from './User.entity';
 
 @Entity()
 export class Favorite extends BaseEntity {
+  /* Relations */
   @ManyToOne((type) => User, (user) => user.favorite)
   user: User;
 

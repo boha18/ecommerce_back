@@ -16,6 +16,7 @@ import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
 import { UserPayement } from './UserPayement.entity';
 
+
 @Entity()
 export class User extends BaseEntity {
   @Column({ nullable: false })
@@ -32,6 +33,8 @@ export class User extends BaseEntity {
 
   @Column({ nullable: false })
   hashed_password: string;
+
+  /* Relations */
 
   @OneToMany((type) => Adress, (adress) => adress.user)
   adress: Adress[];

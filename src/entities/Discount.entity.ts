@@ -14,6 +14,8 @@ export class Discount extends BaseEntity {
   @Column({ nullable: false })
   discountPercent: number;
 
+  /* Relations */
+
   @ManyToOne((type) => User, (user) => user.comment)
   user: User;
 
