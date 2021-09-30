@@ -1,5 +1,11 @@
-import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Body, Controller } from '@nestjs/common';
+import {
+  Crud,
+  CrudController,
+  Override,
+  ParsedBody,
+  ParsedRequest,
+} from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
 import { UserService } from '../user.service';
 
@@ -13,6 +19,14 @@ import { UserService } from '../user.service';
       type: 'uuid',
       primary: true,
     },
+  },
+  query: {
+    join: {
+      file: {
+        eager: true,
+      },
+    },
+    alwaysPaginate: true,
   },
 })
 @Controller('admin/user')

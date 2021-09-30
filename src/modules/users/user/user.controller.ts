@@ -3,10 +3,14 @@ import { Crud, CrudController } from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
 import { UserService } from '../user.service';
 import { CreateOneUser } from './dto/CreateOneUser';
+import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
 
 @Crud({
   model: {
     type: CreateOneUser,
+  },
+  serialize: {
+    get: GetOneUserSerializer,
   },
   params: {
     id: {
@@ -31,6 +35,7 @@ import { CreateOneUser } from './dto/CreateOneUser';
         eager: true,
       },
     },
+    alwaysPaginate: true,
   },
 })
 @Controller('api/user')

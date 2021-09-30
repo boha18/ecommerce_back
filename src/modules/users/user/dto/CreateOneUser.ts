@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
-import { Exclude } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
@@ -25,8 +24,7 @@ export class CreateOneUser {
   email: string;
 
   @IsOptional({ groups: [UPDATE] })
-  @IsNotEmpty({ groups: [CREATE], 
-    message: MessErrNotEmpty })
+  @IsNotEmpty({ groups: [CREATE], message: MessErrNotEmpty })
   @ApiProperty()
   telephone: string;
 

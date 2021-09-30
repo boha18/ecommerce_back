@@ -15,6 +15,7 @@ import { Favorite } from './Favorite.entity';
 import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
 import { UserPayement } from './UserPayement.entity';
+import { Exclude } from 'class-transformer';
 
 
 @Entity()
