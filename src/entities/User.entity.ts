@@ -27,25 +27,38 @@ export class User extends BaseEntity {
 
   /* Relations */
 
-  @OneToMany((type) => Adress, (adress) => adress.user)
+  @OneToMany((type) => Adress, (adress) => adress.user, {
+    onDelete: 'CASCADE',
+  })
   adress: Adress[];
 
-  @OneToOne((type) => File, (file) => file.user)
+  @OneToOne((type) => File, (file) => file.user, {
+    onDelete: 'CASCADE',
+    cascade: true,
+  })
   @JoinColumn()
   file: File;
 
-  @OneToMany((type) => Comment, (comment) => comment.user)
+  @OneToMany((type) => Comment, (comment) => comment.user, {
+    onDelete: 'CASCADE',
+  })
   comment: Comment[];
 
-  @OneToMany((type) => Favorite, (favorite) => favorite.user)
+  @OneToMany((type) => Favorite, (favorite) => favorite.user, {
+    onDelete: 'CASCADE',
+  })
   favorite: Favorite[];
 
-  @OneToMany((type) => Notation, (note) => note.user)
+  @OneToMany((type) => Notation, (note) => note.user, { onDelete: 'CASCADE' })
   note: Notation[];
 
-  @OneToMany((type) => OrderItem, (orderItem) => orderItem.user)
+  @OneToMany((type) => OrderItem, (orderItem) => orderItem.user, {
+    onDelete: 'CASCADE',
+  })
   orderItem: OrderItem[];
 
-  @OneToMany((type) => UserPayement, (userPayement) => userPayement.user)
+  @OneToMany((type) => UserPayement, (userPayement) => userPayement.user, {
+    onDelete: 'CASCADE',
+  })
   userPayement: UserPayement[];
 }

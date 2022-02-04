@@ -2,15 +2,16 @@ import { Controller } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
 import { UserService } from '../user.service';
-import { CreateOneUser } from './dto/CreateOneUser';
+import { CreateOneUser } from '../commun/dto/CreateOneUser';
 import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
 
 @Crud({
   model: {
-    type: User,
+    type: CreateOneUser,
   },
   serialize: {
     get: GetOneUserSerializer,
+    update: GetOneUserSerializer,
   },
   params: {
     id: {
@@ -47,7 +48,7 @@ import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    id: user.id,
+    id: 'd171bf63-4434-4467-9e8a-a9860e522fcc',
   }),
 })
 @Controller('/me')

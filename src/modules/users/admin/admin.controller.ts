@@ -1,11 +1,5 @@
-import { Body, Controller } from '@nestjs/common';
-import {
-  Crud,
-  CrudController,
-  Override,
-  ParsedBody,
-  ParsedRequest,
-} from '@nestjsx/crud';
+import { Controller } from '@nestjs/common';
+import { Crud, CrudController } from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
 import { UserService } from '../user.service';
 
@@ -19,6 +13,9 @@ import { UserService } from '../user.service';
       type: 'uuid',
       primary: true,
     },
+  },
+  routes: {
+    only: ['getManyBase', 'getOneBase'],
   },
   query: {
     join: {
