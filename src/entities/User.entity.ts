@@ -1,12 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  RelationId,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { File } from './File.entity';
 import { Adress } from './Adress.entity';
 import { BaseEntity } from './Base.entity';
@@ -15,8 +7,6 @@ import { Favorite } from './Favorite.entity';
 import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
 import { UserPayement } from './UserPayement.entity';
-import { Exclude } from 'class-transformer';
-
 
 @Entity()
 export class User extends BaseEntity {

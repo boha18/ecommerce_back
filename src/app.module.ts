@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { FileModule } from './modules/files/file.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
+import { ProductModule } from './modules/product/product.module';
 import { UserModule } from './modules/users/user.module';
 
 @Module({
@@ -10,14 +13,17 @@ import { UserModule } from './modules/users/user.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
+      username: 'ecommerce_admin',
       password: '0000',
-      database: 'postgres',
+      database: 'ecommerce',
       entities: ['src/**/**.entity.js', 'dist/**/**.entity.js'],
       synchronize: true,
       logging: true,
     }),
     UserModule,
+    ProductModule,
+    InventoryModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

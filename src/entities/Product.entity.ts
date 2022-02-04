@@ -18,8 +18,10 @@ export class Product extends BaseEntity {
   @ManyToOne((type) => Category, (category) => category.product)
   category: Category;
 
+  /// add calculated note
+
   /* Relations */
-  
+
   @OneToMany((type) => Comment, (comment) => comment.product)
   comment: Comment[];
 

@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
 import { UserService } from '../user.service';
 import { CreateOneUser } from './dto/CreateOneUser';
@@ -7,38 +7,50 @@ import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
 
 @Crud({
   model: {
-    type: CreateOneUser,
+    type: User,
   },
   serialize: {
     get: GetOneUserSerializer,
   },
   params: {
     id: {
-      field: 'id',
-      type: 'uuid',
       primary: true,
+      disabled: true,
     },
   },
   routes: {
-    exclude: [
-      'getManyBase',
-      'createOneBase',
-      'createManyBase',
-      'replaceOneBase',
-      'deleteOneBase',
-      'recoverOneBase',
-    ],
+    only: ['getOneBase', 'updateOneBase'],
   },
   query: {
     join: {
       file: {
         eager: true,
       },
+      adress: {
+        eager: true,
+      },
+      comment: {
+        eager: true,
+      },
+      userPayement: {
+        eager: true,
+      },
+    },
+    filter: {
+      isActive: {
+        $ne: false,
+      },
     },
     alwaysPaginate: true,
   },
 })
-@Controller('api/user')
+@CrudAuth({
+  property: 'user',
+  filter: (user: User) => ({
+    id: user.id,
+  }),
+})
+@Controller('/me')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}
 }
