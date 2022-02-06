@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjsx/crud/lib/crud';
 import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
-export class GetOneFileSerializer {
+export class FileSerializer {
   @Expose()
   @ApiProperty()
   path: String;

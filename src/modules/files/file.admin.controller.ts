@@ -3,16 +3,16 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Crud, CrudController, Override } from '@nestjsx/crud';
 import { Express } from 'express';
 import { File } from 'src/entities/File.entity';
-import { FileService } from '../file.service';
-import { GetOneFileSerializer } from './serializer/GetOneFileSerializer';
-import { diskStorageConfig } from '../DiskStorageConfig';
+import { FileService } from './file.service';
+import { FileSerializer } from './serializer/FileSerializer';
+import { diskStorageConfig } from '../../Utility/DiskStorage/DiskStorageConfig';
 
 @Crud({
   model: {
     type: File,
   },
   serialize: {
-    get: GetOneFileSerializer,
+    get: FileSerializer,
   },
   params: {
     id: {
@@ -25,15 +25,10 @@ import { diskStorageConfig } from '../DiskStorageConfig';
     exclude: ['createManyBase'],
   },
   query: {
-    join: {
-      file: {
-        eager: true,
-      },
-    },
     alwaysPaginate: true,
   },
 })
-@Controller('file')
+@Controller('admin/file')
 export class FileAdminController implements CrudController<File> {
   constructor(public service: FileService) {}
 

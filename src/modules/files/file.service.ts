@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CrudRequest, CreateManyDto } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { File } from 'src/entities/File.entity';
-import { DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class FileService extends TypeOrmCrudService<File> {
@@ -23,7 +22,7 @@ export class FileService extends TypeOrmCrudService<File> {
       await this.FileRepository.save(newFile);
       return newFile;
     } catch (error) {
-      console.error(error);
+      throw new BadRequestException(error);
     }
   }
 }
