@@ -1,13 +1,17 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UsePipes } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { User } from 'src/entities/User.entity';
-import { UserService } from '../user.service';
-import { CreateOneUser } from '../commun/dto/CreateOneUser';
+import { CreateOneUser } from './dto/CreateOneUser';
+import { UserService } from './users.service';
 import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
+import { DtoValidationPipe } from 'src/Utility/Pipes/DtoValidationPipe';
 
 @Crud({
   model: {
-    type: CreateOneUser,
+    type: User,
+  },
+  dto: {
+    update: CreateOneUser,
   },
   serialize: {
     get: GetOneUserSerializer,
@@ -51,7 +55,8 @@ import { GetOneUserSerializer } from './serializer/GetOneUserSerializer';
     id: 'd171bf63-4434-4467-9e8a-a9860e522fcc',
   }),
 })
-@Controller('/me')
+@UsePipes(new DtoValidationPipe())
+@Controller('me')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}
 }
