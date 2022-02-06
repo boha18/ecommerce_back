@@ -1,33 +1,37 @@
 import {
+  PipeTransform,
+  Injectable,
   ArgumentMetadata,
   BadRequestException,
-  Injectable,
-  PipeTransform,
 } from '@nestjs/common';
+import { validate } from 'class-validator';
+import { ClassTransformOptions, plainToClass } from 'class-transformer';
 import { CrudValidationGroups } from '@nestjsx/crud';
-import { plainToClass } from 'class-transformer';
-import { validate, ValidationError } from 'class-validator';
-import { error } from 'console';
-import { User } from 'src/entities/User.entity';
-import { CreateOneUser } from 'src/modules/users/dto/CreateOneUser';
+
+const { CREATE, UPDATE } = CrudValidationGroups;
 
 @Injectable()
-export class DtoValidationPipe implements PipeTransform {
-  async transform(entity: any, metadata: ArgumentMetadata) {
-    // Dynamically determine the groups
-    const groups = [];
-    if (entity.selectedCategory === 1) {
-      groups.push('registration');
+export class DtoValidationPipe implements PipeTransform<any> {
+  constructor(private transfGroup?: ClassTransformOptions) {}
+  async transform(value: any, { metatype }: ArgumentMetadata) {
+    if (!metatype || !this.toValidate(metatype)) {
+      return value;
     }
 
-    // Transform to class with groups
-    const entityClass = plainToClass(CreateOneUser, entity);
+    const object = plainToClass(metatype, value);
+    console.log('transformed  Object ::');
+    console.log(object);
+    console.log(value);
 
-    // Validate with groups
-    const errors = await validate(entityClass, { groups });
+    const errors = await validate(object, { groups: UPDATE });
     if (errors.length > 0) {
-      console.log(errors[0]);
+      throw new BadRequestException('Validation failed');
     }
-    return entityClass;
+    return value;
+  }
+
+  private toValidate(metatype: Function): boolean {
+    const types: Function[] = [String, Boolean, Number, Array, Object];
+    return !types.includes(metatype);
   }
 }
