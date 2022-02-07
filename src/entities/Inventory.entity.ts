@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './Base.entity';
-import { InventoryImage } from './InventoryImage.entity';
+import { File } from './File.entity';
 import { OrderItem } from './OrderItems.entity';
 import { Product } from './Product.entity';
 
@@ -51,9 +51,6 @@ export class Inventory extends BaseEntity {
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.inventory)
   orderItem: OrderItem[];
 
-  @OneToMany(
-    (type) => InventoryImage,
-    (inventoryImage) => inventoryImage.inventory,
-  )
-  inventoryImage: InventoryImage[];
+  @OneToMany((type) => File, (file) => file.inventory)
+  images: File[];
 }

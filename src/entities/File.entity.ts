@@ -1,7 +1,7 @@
-import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { Category } from './Category.entity';
-import { InventoryImage } from './InventoryImage.entity';
+import { Inventory } from './Inventory.entity';
 import { User } from './User.entity';
 
 @Entity()
@@ -29,6 +29,6 @@ export class File extends BaseEntity {
   @OneToOne((type) => Category, (product) => product.icon)
   productIcon: Category;
 
-  @OneToMany((type) => InventoryImage, (inventoryImage) => inventoryImage.file)
-  inventoryImage: InventoryImage[];
+  @ManyToOne((type) => Inventory, (inventory) => inventory.images)
+  inventory: Inventory;
 }

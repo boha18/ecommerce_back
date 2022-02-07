@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Inventory } from 'src/entities/Inventory.entity';
-import { InventoryService } from '../inventory.service';
+import { InventoryService } from './inventory.service';
 
 @Crud({
   model: {
@@ -16,14 +16,17 @@ import { InventoryService } from '../inventory.service';
   },
   query: {
     join: {
-      file: {
+      product: {
+        eager: true,
+      },
+      inventoryImage: {
         eager: true,
       },
     },
     alwaysPaginate: true,
   },
 })
-@Controller('admin/Inventory')
+@Controller('admin/inventory')
 export class InventoryAdminController implements CrudController<Inventory> {
   constructor(public service: InventoryService) {}
 }

@@ -1,16 +1,16 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Inventory } from 'src/entities/Inventory.entity';
-import { InventoryService } from '../inventory.service';
-import { CreateOneInventory } from './dto/CreateOneInventory';
-import { GetOneInventorySerializer } from './serializer/GetOneInventorySerializer';
+import { InventoryDto } from './dto/InventoryDto';
+import { InventoryService } from './inventory.service';
+import { InventorySerializer } from './serializer/InventorySerializer';
 
 @Crud({
   model: {
-    type: CreateOneInventory,
+    type: Inventory,
   },
   serialize: {
-    get: GetOneInventorySerializer,
+    get: InventorySerializer,
   },
   params: {
     id: {
@@ -20,14 +20,7 @@ import { GetOneInventorySerializer } from './serializer/GetOneInventorySerialize
     },
   },
   routes: {
-    exclude: [
-      //'getManyBase',
-      //'createOneBase',
-      'createManyBase',
-      'replaceOneBase',
-      'deleteOneBase',
-      'recoverOneBase',
-    ],
+    only: ['getOneBase', 'getManyBase'],
   },
   query: {
     join: {
@@ -38,7 +31,7 @@ import { GetOneInventorySerializer } from './serializer/GetOneInventorySerialize
     alwaysPaginate: true,
   },
 })
-@Controller('/api/inventory')
+@Controller('/user/inventory')
 export class InventoryUserController implements CrudController<Inventory> {
   constructor(public service: InventoryService) {}
 }

@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjsx/crud/lib/crud';
 import { Exclude, Expose } from 'class-transformer';
 import { Discount } from 'src/entities/Discount.entity';
-import { InventoryImage } from 'src/entities/InventoryImage.entity';
+import { File } from 'src/entities/File.entity';
+import { OrderItem } from 'src/entities/OrderItems.entity';
 import { Product } from 'src/entities/Product.entity';
 
 @Exclude()
-export class GetOneInventorySerializer {
+export class InventorySerializer {
   @Expose()
   @ApiProperty()
   id: String;
@@ -28,9 +29,13 @@ export class GetOneInventorySerializer {
 
   @Expose()
   @ApiProperty()
+  orderItem: OrderItem[];
+
+  @Expose()
+  @ApiProperty()
   discount: Discount[];
 
   @Expose()
   @ApiProperty()
-  inventoryImage: InventoryImage[];
+  images: File[];
 }
