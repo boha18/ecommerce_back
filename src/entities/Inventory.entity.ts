@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './Base.entity';
-import { File } from './File.entity';
+import { InventoryImage } from './InventoryImage.entity';
 import { OrderItem } from './OrderItems.entity';
 import { Product } from './Product.entity';
 
@@ -48,9 +48,14 @@ export class Inventory extends BaseEntity {
   @ManyToOne((type) => Product, (product) => product.inventory)
   product: Product;
 
-  @OneToMany((type) => OrderItem, (orderItem) => orderItem.inventory)
+  @OneToMany((type) => OrderItem, (orderItem) => orderItem.inventory, {
+    onDelete: 'CASCADE',
+  })
   orderItem: OrderItem[];
 
-  @OneToMany((type) => File, (file) => file.inventory)
-  images: File[];
+  @OneToMany(
+    (type) => InventoryImage,
+    (inventoryImage) => inventoryImage.inventory,
+  )
+  inventoryImage: InventoryImage[];
 }

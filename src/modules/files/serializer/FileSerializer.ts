@@ -5,6 +5,10 @@ import { Exclude, Expose } from 'class-transformer';
 export class FileSerializer {
   @Expose()
   @ApiProperty()
+  id: string;
+
+  @Expose()
+  @ApiProperty()
   path: String;
 
   @Expose()

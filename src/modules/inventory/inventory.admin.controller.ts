@@ -19,7 +19,7 @@ import { InventoryService } from './inventory.service';
       product: {
         eager: true,
       },
-      inventoryImage: {
+      images: {
         eager: true,
       },
     },

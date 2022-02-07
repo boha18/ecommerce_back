@@ -22,18 +22,26 @@ export class Product extends BaseEntity {
 
   /* Relations */
 
-  @OneToMany((type) => Comment, (comment) => comment.product)
+  @OneToMany((type) => Comment, (comment) => comment.product, {
+    onDelete: 'CASCADE',
+  })
   comment: Comment[];
 
   @OneToMany((type) => Discount, (discount) => discount.product)
   discount: Discount[];
 
-  @OneToMany((type) => Favorite, (favorite) => favorite.product)
+  @OneToMany((type) => Favorite, (favorite) => favorite.product, {
+    onDelete: 'CASCADE',
+  })
   favorite: Favorite[];
 
-  @OneToMany((type) => Notation, (note) => note.product)
+  @OneToMany((type) => Notation, (note) => note.product, {
+    onDelete: 'CASCADE',
+  })
   note: Notation[];
 
-  @OneToMany((type) => Inventory, (inventory) => inventory.product)
+  @OneToMany((type) => Inventory, (inventory) => inventory.product, {
+    onDelete: 'CASCADE',
+  })
   inventory: Inventory[];
 }

@@ -16,8 +16,8 @@ import { FileDto } from './dto/FileDto';
     create: FileDto,
   },
   serialize: {
-    get: FileSerializer,
-    create: FileSerializer,
+    get: File,
+    create: File,
     delete: FileSerializer,
   },
   validation: {
@@ -32,6 +32,9 @@ import { FileDto } from './dto/FileDto';
   },
   routes: {
     only: ['createOneBase', 'deleteOneBase', 'getOneBase', 'getManyBase'],
+    deleteOneBase: {
+      returnDeleted: true,
+    },
   },
   query: {
     alwaysPaginate: true,

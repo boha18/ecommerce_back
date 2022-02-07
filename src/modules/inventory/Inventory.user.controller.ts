@@ -1,7 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Inventory } from 'src/entities/Inventory.entity';
-import { InventoryDto } from './dto/InventoryDto';
 import { InventoryService } from './inventory.service';
 import { InventorySerializer } from './serializer/InventorySerializer';
 
@@ -24,7 +23,10 @@ import { InventorySerializer } from './serializer/InventorySerializer';
   },
   query: {
     join: {
-      file: {
+      product: {
+        eager: true,
+      },
+      images: {
         eager: true,
       },
     },

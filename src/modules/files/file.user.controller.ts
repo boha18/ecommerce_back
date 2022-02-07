@@ -17,7 +17,7 @@ import { FileDto } from './dto/FileDto';
   },
   serialize: {
     get: FileSerializer,
-    create: FileSerializer,
+    create: File,
     delete: FileSerializer,
   },
   validation: {
