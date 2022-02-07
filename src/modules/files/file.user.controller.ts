@@ -21,7 +21,7 @@ import { FileDto } from './dto/FileDto';
     delete: FileSerializer,
   },
   validation: {
-    transformOptions: { groups: ['ADMIN'] },
+    transformOptions: { groups: ['USER'] },
   },
   params: {
     id: {
@@ -31,13 +31,13 @@ import { FileDto } from './dto/FileDto';
     },
   },
   routes: {
-    only: ['createOneBase', 'deleteOneBase', 'getOneBase', 'getManyBase'],
+    only: ['createOneBase', 'deleteOneBase', 'getOneBase'],
   },
   query: {
     alwaysPaginate: true,
   },
 })
-@Controller('admin/file')
+@Controller('user/file')
 export class FileAdminController implements CrudController<File> {
   constructor(public service: FileService) {}
 
