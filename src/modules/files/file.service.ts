@@ -25,4 +25,16 @@ export class FileService extends TypeOrmCrudService<File> {
       throw new BadRequestException(error);
     }
   }
+
+  async DeleteFile(id: string): Promise<File> {
+    try {
+      let file = await this.FileRepository.findOne(id);
+      file.isArchived = true;
+      file.isActive = false;
+      await this.FileRepository.save(file);
+      return file;
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 }

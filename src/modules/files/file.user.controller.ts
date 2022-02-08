@@ -1,4 +1,12 @@
-import { Controller, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Param,
+  Req,
+  Request,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Crud, CrudController, Override } from '@nestjsx/crud';
 import { Express } from 'express';
@@ -16,8 +24,8 @@ import { FileDto } from './dto/FileDto';
     create: FileDto,
   },
   serialize: {
-    get: FileSerializer,
-    create: File,
+    get: File,
+    create: FileSerializer,
     delete: FileSerializer,
   },
   validation: {
@@ -31,19 +39,29 @@ import { FileDto } from './dto/FileDto';
     },
   },
   routes: {
-    only: ['createOneBase', 'deleteOneBase', 'getOneBase'],
+    only: ['createOneBase', 'getOneBase'],
   },
   query: {
     alwaysPaginate: true,
+    filter: {
+      isActive: {
+        $eq: true,
+      },
+    },
   },
 })
 @Controller('user/file')
-export class FileAdminController implements CrudController<File> {
+export class FileUserController implements CrudController<File> {
   constructor(public service: FileService) {}
 
   @UseInterceptors(FileInterceptor('file', diskStorageConfig))
   @Override()
   createOne(@UploadedFile() file: Express.Multer.File) {
     return this.service.CreateFile(file);
+  }
+
+  @Override()
+  deleteOne(@Param('id') id: string) {
+    return this.service.DeleteFile(id);
   }
 }

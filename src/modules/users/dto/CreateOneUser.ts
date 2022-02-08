@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { Exclude, Expose } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
+import { File } from 'src/entities/File.entity';
 import { UserType } from 'src/Utility/Groups/UserType';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
@@ -44,6 +45,11 @@ export class CreateOneUser {
   @ApiProperty()
   @IsOptional({ groups: [UPDATE] })
   hashed_password: string;
+
+  @Expose({ groups: [ADMIN, USER] })
+  @ApiProperty()
+  @IsOptional({ groups: [UPDATE, USER] })
+  file: File;
 
   @Expose({ groups: [ADMIN] })
   @ApiProperty()

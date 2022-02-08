@@ -1,6 +1,11 @@
-import { Controller, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Request,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Crud, CrudController, Override } from '@nestjsx/crud';
+import { Crud, CrudController, CrudRequest, Override } from '@nestjsx/crud';
 import { Express } from 'express';
 import { File } from 'src/entities/File.entity';
 import { FileService } from './file.service';

@@ -23,11 +23,9 @@ import { InventorySerializer } from './serializer/InventorySerializer';
   },
   query: {
     join: {
-      product: {
-        eager: true,
-      },
       images: {
         eager: true,
+        allow: ['path', 'id'],
       },
     },
     alwaysPaginate: true,

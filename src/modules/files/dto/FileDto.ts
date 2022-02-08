@@ -7,6 +7,13 @@ const { CREATE, UPDATE } = CrudValidationGroups;
 const MessErrNotEmpty = ' cannot be empty. Please enter a value';
 
 @Exclude()
+export class FileIdDto {
+  @Expose()
+  @ApiProperty()
+  @IsNotEmpty()
+  id: string;
+}
+@Exclude()
 export class FileDto {
   @Expose({ groups: ['ADMIN', 'USER'] })
   @IsOptional({ groups: [UPDATE] })

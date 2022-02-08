@@ -27,15 +27,10 @@ export class User extends BaseEntity {
 
   /* Relations */
 
-  @OneToMany((type) => Adress, (adress) => adress.user, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany((type) => Adress, (adress) => adress.user)
   adress: Adress[];
 
-  @OneToOne((type) => File, (file) => file.user, {
-    onDelete: 'CASCADE',
-    cascade: true,
-  })
+  @OneToOne((type) => File, (file) => file.user)
   @JoinColumn()
   file: File;
 

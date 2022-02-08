@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Product } from 'src/entities/Product.entity';
-import { ProductService } from '../product.service';
 import { CreateOneProduct } from './dto/CreateOneProduct';
+import { ProductService } from './product.service';
 import { GetOneProductSerializer } from './serializer/GetOneProductSerializer';
 
 @Crud({
@@ -20,9 +20,7 @@ import { GetOneProductSerializer } from './serializer/GetOneProductSerializer';
     },
   },
   routes: {
-    exclude: [
-      //'getManyBase',
-      //'createOneBase',
+    only: [
       'createManyBase',
       'replaceOneBase',
       'deleteOneBase',
