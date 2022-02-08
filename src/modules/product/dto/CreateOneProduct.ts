@@ -1,14 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
-import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
-import { Category } from 'src/entities/Category.entity';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import { Inventory } from 'src/entities/Inventory.entity';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
 const MessErrNotEmpty = 'The field cannot be empty. Please enter a value';
 
-export class CreateOneProduct {
+export class ProductDto {
   @ApiProperty()
   @IsOptional({ groups: [UPDATE] })
   @IsNotEmpty({ groups: [CREATE], message: MessErrNotEmpty })
@@ -22,7 +21,7 @@ export class CreateOneProduct {
   @IsOptional({ groups: [UPDATE] })
   @IsNotEmpty({ groups: [CREATE], message: MessErrNotEmpty })
   @ApiProperty()
-  category: Category;
+  category: { id: string };
 
   @IsOptional()
   @ApiProperty()

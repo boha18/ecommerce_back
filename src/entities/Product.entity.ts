@@ -30,18 +30,12 @@ export class Product extends BaseEntity {
   @OneToMany((type) => Discount, (discount) => discount.product)
   discount: Discount[];
 
-  @OneToMany((type) => Favorite, (favorite) => favorite.product, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany((type) => Favorite, (favorite) => favorite.product)
   favorite: Favorite[];
 
-  @OneToMany((type) => Notation, (note) => note.product, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany((type) => Notation, (note) => note.product)
   note: Notation[];
 
-  @OneToMany((type) => Inventory, (inventory) => inventory.product, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany((type) => Inventory, (inventory) => inventory.product)
   inventory: Inventory[];
 }
