@@ -37,11 +37,11 @@ import { AddressDto } from './dto/AddressDto';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    userId: 'd171bf63-4434-4467-9e8a-a9860e522fcc',
+    'Address.userId': 'd171bf63-4434-4467-9e8a-a9860e522fcc',
   }),
-  persist: (user) => ({ userId: 'd171bf63-4434-4467-9e8a-a9860e522fcc' }),
+  persist: (user) => ({ user: { id: 'd171bf63-4434-4467-9e8a-a9860e522fcc' } }),
 })
-@Controller('/api/address')
+@Controller('/user/address')
 export class AddressUserController implements CrudController<Address> {
   constructor(public service: AddressService) {}
 }

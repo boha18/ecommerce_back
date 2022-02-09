@@ -7,7 +7,6 @@ import { AddressService } from './address.service';
   model: {
     type: Address,
   },
-  dto: {},
   params: {
     id: {
       field: 'id',
@@ -15,20 +14,15 @@ import { AddressService } from './address.service';
       primary: true,
     },
   },
+  routes: {
+    only: ['getOneBase', 'getManyBase'],
+  },
   query: {
-    allow: ['id', 'name', 'description'],
+    allow: ['id', 'latitude', 'longitude'],
     join: {
-      category: {
+      user: {
         eager: true,
-        allow: ['id', 'name', 'description'],
-      },
-      inventory: {
-        eager: true,
-        allow: ['id', 'price', 'size', 'color', 'quantity'],
-      },
-      'inventory.images': {
-        eager: true,
-        allow: ['id', 'path'],
+        allow: ['id', 'firstName', 'lastName', 'email', 'telephone'],
       },
     },
     alwaysPaginate: true,
