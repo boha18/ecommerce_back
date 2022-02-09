@@ -32,11 +32,15 @@ import { ProductService } from './product.service';
         eager: true,
         allow: ['id', 'path'],
       },
+      comment: {
+        eager: true,
+        allow: ['text', 'written'],
+      },
     },
     alwaysPaginate: true,
   },
 })
-@Controller('/api/product')
+@Controller('/user/product')
 export class ProductUserController implements CrudController<Product> {
   constructor(public service: ProductService) {}
 }

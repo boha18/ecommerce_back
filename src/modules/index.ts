@@ -4,3 +4,4 @@ export { InventoryModule } from './inventory/inventory.module';
 export { UserModule } from './users/users.module';
 export { ProductModule } from './product/product.module';
 export { AddressModule } from './address/address.module';
+export { CommentModule } from './comment/comment.module';

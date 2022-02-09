@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import {
   AddressModule,
   CategoryModule,
+  CommentModule,
   FileModule,
   InventoryModule,
   ProductModule,
@@ -30,6 +31,7 @@ import {
     FileModule,
     CategoryModule,
     AddressModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
