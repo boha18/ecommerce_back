@@ -1,12 +1,12 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { File } from './File.entity';
-import { Adress } from './Adress.entity';
+import { Address } from './Address.entity';
 import { BaseEntity } from './Base.entity';
 import { Comment } from './Comment.entity';
 import { Favorite } from './Favorite.entity';
 import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
-import { UserPayement } from './UserPayement.entity';
+import { UserPayment } from './UserPayment.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -27,8 +27,8 @@ export class User extends BaseEntity {
 
   /* Relations */
 
-  @OneToMany((type) => Adress, (adress) => adress.user)
-  adress: Adress[];
+  @OneToMany((type) => Address, (address) => address.user)
+  address: Address[];
 
   @OneToOne((type) => File, (file) => file.user)
   @JoinColumn()
@@ -52,8 +52,6 @@ export class User extends BaseEntity {
   })
   orderItem: OrderItem[];
 
-  @OneToMany((type) => UserPayement, (userPayement) => userPayement.user, {
-    onDelete: 'CASCADE',
-  })
-  userPayement: UserPayement[];
+  @OneToMany((type) => UserPayment, (userPayment) => userPayment.user)
+  userPayment: UserPayment[];
 }

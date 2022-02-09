@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { Exclude, Expose } from 'class-transformer';
 import { IsNotEmpty, IsOptional, ValidateNested } from 'class-validator';
+import { Product } from 'src/entities/Product.entity';
 import { FileIdDto } from 'src/modules/files/dto/FileDto';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
@@ -40,4 +41,10 @@ export class InventoryDto {
   @ApiProperty()
   @ValidateNested()
   images: FileIdDto[];
+
+  @Expose()
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE], message: 'product' + MessErrNotEmpty })
+  @ApiProperty()
+  product: Product;
 }

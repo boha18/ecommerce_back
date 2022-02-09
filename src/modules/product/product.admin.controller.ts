@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Product } from 'src/entities/Product.entity';
-import { ProductDto } from './dto/CreateOneProduct';
+import { ProductDto } from './dto/ProductDto';
 import { ProductService } from './product.service';
 
 @Crud({
@@ -12,7 +12,6 @@ import { ProductService } from './product.service';
     create: ProductDto,
     update: ProductDto,
   },
-  routes: {},
   params: {
     id: {
       field: 'id',
@@ -26,6 +25,14 @@ import { ProductService } from './product.service';
       category: {
         eager: true,
         allow: ['id', 'name', 'description'],
+      },
+      inventory: {
+        eager: true,
+        allow: ['id', 'price', 'size', 'color', 'quantity'],
+      },
+      'inventory.images': {
+        eager: true,
+        allow: ['id', 'path'],
       },
     },
     alwaysPaginate: true,

@@ -3,7 +3,7 @@ import { BaseEntity } from './Base.entity';
 import { User } from './User.entity';
 
 @Entity()
-export class Adress extends BaseEntity {
+export class Address extends BaseEntity {
   @Column({ nullable: false })
   latitude: number;
 
@@ -12,6 +12,6 @@ export class Adress extends BaseEntity {
 
   /* Relations */
 
-  @ManyToOne((type) => User, (user) => user.adress)
+  @ManyToOne((type) => User, (user) => user.address)
   user: User;
 }

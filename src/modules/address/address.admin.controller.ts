@@ -1,21 +1,19 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
-import { Product } from 'src/entities/Product.entity';
-import { ProductService } from './product.service';
+import { Address } from 'src/entities/Address.entity';
+import { AddressService } from './address.service';
 
 @Crud({
   model: {
-    type: Product,
+    type: Address,
   },
+  dto: {},
   params: {
     id: {
       field: 'id',
       type: 'uuid',
       primary: true,
     },
-  },
-  routes: {
-    only: ['getOneBase', 'getManyBase'],
   },
   query: {
     allow: ['id', 'name', 'description'],
@@ -36,7 +34,7 @@ import { ProductService } from './product.service';
     alwaysPaginate: true,
   },
 })
-@Controller('/api/product')
-export class ProductUserController implements CrudController<Product> {
-  constructor(public service: ProductService) {}
+@Controller('admin/address')
+export class AddressAdminController implements CrudController<Address> {
+  constructor(public service: AddressService) {}
 }

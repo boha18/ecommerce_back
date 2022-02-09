@@ -3,7 +3,7 @@ import { BaseEntity } from './Base.entity';
 import { User } from './User.entity';
 
 @Entity()
-export class UserPayement extends BaseEntity {
+export class UserPayment extends BaseEntity {
   @Column({ nullable: false })
   cartNumber: number;
 
@@ -14,10 +14,10 @@ export class UserPayement extends BaseEntity {
   cvv: number;
 
   @Column({ nullable: false })
-  payementType: String;
+  paymentType: String;
 
   /* Relations */
 
-  @ManyToOne((type) => User, (user) => user.userPayement)
+  @ManyToOne((type) => User, (user) => user.userPayment)
   user: User;
 }
