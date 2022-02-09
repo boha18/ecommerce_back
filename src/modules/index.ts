@@ -7,3 +7,4 @@ export { AddressModule } from './address/address.module';
 export { CommentModule } from './comment/comment.module';
 export { DiscountModule } from './discount/discount.module';
 export { FavoriteModule } from './favorite/favorite.module';
+export { NotationModule } from './notation/notation.module';

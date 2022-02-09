@@ -10,6 +10,7 @@ import {
   FavoriteModule,
   FileModule,
   InventoryModule,
+  NotationModule,
   ProductModule,
   UserModule,
 } from './modules';
@@ -36,6 +37,7 @@ import {
     CommentModule,
     DiscountModule,
     FavoriteModule,
+    NotationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

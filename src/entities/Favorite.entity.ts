@@ -6,9 +6,11 @@ import { User } from './User.entity';
 @Entity()
 export class Favorite extends BaseEntity {
   /* Relations */
-  @ManyToOne((type) => User, (user) => user.favorite)
+  @ManyToOne((type) => User, (user) => user.favorite, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne((type) => Product, (product) => product.favorite)
+  @ManyToOne((type) => Product, (product) => product.favorite, {
+    onDelete: 'CASCADE',
+  })
   product: Product;
 }

@@ -13,9 +13,11 @@ export class Comment extends BaseEntity {
 
   /* Relations */
 
-  @ManyToOne((type) => User, (user) => user.comment)
+  @ManyToOne((type) => User, (user) => user.comment, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne((type) => Product, (product) => product.comment)
+  @ManyToOne((type) => Product, (product) => product.comment, {
+    onDelete: 'CASCADE',
+  })
   product: Product;
 }

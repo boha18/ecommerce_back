@@ -4,19 +4,18 @@ import { Product } from './Product.entity';
 import { User } from './User.entity';
 
 @Entity()
-@Check('"note" > 0 AND "note" <= 5')
 export class Notation extends BaseEntity {
   @Column({ nullable: false })
+  @Check('"note" > 0 AND "note" <= 5')
+  @Column('decimal', { precision: 3, scale: 2 })
   note: number;
-
-  @Column({ nullable: false })
-  noted: boolean;
-
   /* Relations */
 
   @ManyToOne((type) => User, (user) => user.note)
   user: User;
 
-  @ManyToOne((type) => Product, (product) => product.note)
+  @ManyToOne((type) => Product, (product) => product.note, {
+    onDelete: 'CASCADE',
+  })
   product: Product;
 }
