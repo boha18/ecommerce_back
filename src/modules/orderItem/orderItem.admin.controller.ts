@@ -1,12 +1,11 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
-import { Comment } from 'src/entities/Comment.entity';
 import { OrderItem } from 'src/entities/OrderItems.entity';
 import { OrderItemService } from './orderItem.service';
 
 @Crud({
   model: {
-    type: Comment,
+    type: OrderItem,
   },
   params: {
     id: {
@@ -21,11 +20,10 @@ import { OrderItemService } from './orderItem.service';
   query: {
     allow: ['id'],
     join: {
-      user: {
+      inventory: {
         eager: true,
-        allow: ['id', 'firstName', 'lastName', 'email', 'telephone'],
       },
-      product: {
+      'inventory.product': {
         eager: true,
       },
     },

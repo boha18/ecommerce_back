@@ -21,15 +21,25 @@ import { OrderItemService } from './orderItem.service';
     },
   },
   routes: {
-    only: ['getOneBase', 'getManyBase', 'createOneBase', 'deleteOneBase'],
+    only: [
+      'getOneBase',
+      'getManyBase',
+      'createOneBase',
+      'deleteOneBase',
+      'updateOneBase',
+    ],
   },
   query: {
-    allow: ['id'],
+    allow: ['id', 'quantity'],
     alwaysPaginate: true,
     join: {
-      product: {
+      inventory: {
         eager: true,
-        allow: ['id', 'name', 'description'],
+        allow: ['id', 'price', 'size', 'color', 'quantity'],
+      },
+      'inventory.product': {
+        eager: true,
+        allow: ['id', 'name', 'description', 'color'],
       },
     },
     sort: [
@@ -43,7 +53,7 @@ import { OrderItemService } from './orderItem.service';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    'Favorite.userId': 'd171bf63-4434-4467-9e8a-a9860e522fcc',
+    'OrderItem.userId': 'd171bf63-4434-4467-9e8a-a9860e522fcc',
   }),
   persist: (user) => ({ user: { id: 'd171bf63-4434-4467-9e8a-a9860e522fcc' } }),
 })

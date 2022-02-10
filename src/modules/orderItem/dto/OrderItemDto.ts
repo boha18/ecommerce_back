@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsNotEmpty, IsOptional } from 'class-validator';
-import { Product } from 'src/entities/Product.entity';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -11,5 +10,10 @@ export class OrderItemDto {
   @IsOptional({ groups: [UPDATE] })
   @IsNotEmpty({ groups: [CREATE], message: MessErrNotEmpty })
   @ApiProperty()
-  product: Product;
+  quantity: number;
+
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE], message: MessErrNotEmpty })
+  @ApiProperty()
+  inventory: number;
 }
