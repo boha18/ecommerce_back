@@ -9,5 +9,6 @@ import { NotationUserController } from './notation.user.controller';
   imports: [TypeOrmModule.forFeature([Notation])],
   controllers: [NotationAdminController, NotationUserController],
   providers: [NotationService],
+  exports: [NotationService],
 })
 export class NotationModule {}

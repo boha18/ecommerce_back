@@ -1,4 +1,4 @@
-import { Check, Column, Entity, ManyToOne } from 'typeorm';
+import { AfterInsert, Check, Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { Product } from './Product.entity';
 import { User } from './User.entity';
@@ -18,4 +18,18 @@ export class Notation extends BaseEntity {
     onDelete: 'CASCADE',
   })
   product: Product;
+
+  @AfterInsert()
+  async updateProductNotation() {
+    let notations = await Notation.find({
+      product: { id: this.product.id },
+    });
+    let note =
+      (notations.reduce((prec, item) => Number(prec) + Number(item.note), 0) +
+        Number(this.note)) /
+      (notations.length + 1);
+    let product = await Product.findOne(this.product.id);
+    product.noteCalculated = note;
+    await Product.save(product);
+  }
 }

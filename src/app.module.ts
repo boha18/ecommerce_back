@@ -11,6 +11,7 @@ import {
   FileModule,
   InventoryModule,
   NotationModule,
+  OrderItemModule,
   ProductModule,
   UserModule,
 } from './modules';
@@ -38,6 +39,7 @@ import {
     DiscountModule,
     FavoriteModule,
     NotationModule,
+    OrderItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],

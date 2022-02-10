@@ -15,6 +15,9 @@ export class Product extends BaseEntity {
   @Column({ nullable: false })
   description: string;
 
+  @Column('decimal', { precision: 3, scale: 2, default: 0 })
+  noteCalculated: number;
+
   @ManyToOne((type) => Category, (category) => category.product)
   category: Category;
 

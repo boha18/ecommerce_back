@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { OrderTotal } from './OrderTotal.entity';
 
 @Entity()
-export class Payement extends BaseEntity {
+export class Payment extends BaseEntity {
   @Column({ nullable: false })
   amount: number;
 
@@ -15,7 +15,7 @@ export class Payement extends BaseEntity {
 
   /* Relations */
 
-  @OneToOne((type) => OrderTotal, (orderTotal) => orderTotal.payement)
+  @OneToOne((type) => OrderTotal, (orderTotal) => orderTotal.payment)
   @JoinColumn()
   orderTotal: OrderTotal;
 }

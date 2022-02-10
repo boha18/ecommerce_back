@@ -1,7 +1,7 @@
 import { Check, Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { OrderItem } from './OrderItems.entity';
-import { Payement } from './Payement.entity';
+import { Payment } from './Payment.entity';
 
 @Entity()
 export class OrderTotal extends BaseEntity {
@@ -16,6 +16,6 @@ export class OrderTotal extends BaseEntity {
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.orderTotal)
   orderItem: OrderItem[];
 
-  @OneToOne((type) => Payement, (payement) => payement.orderTotal)
-  payement: Payement;
+  @OneToOne((type) => Payment, (payment) => payment.orderTotal)
+  payment: Payment;
 }
