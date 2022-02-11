@@ -11,7 +11,7 @@ export class OrderItem extends BaseEntity {
 
   /* Relations */
 
-  @ManyToOne((type) => User, (user) => user.orderItem)
+  @ManyToOne((type) => User, (user) => user.orderItem, { onDelete: 'CASCADE' })
   user: User;
 
   @ManyToOne((type) => Inventory, (inventory) => inventory.orderItem, {

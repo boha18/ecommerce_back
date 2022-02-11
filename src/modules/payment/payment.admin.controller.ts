@@ -1,11 +1,12 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
-import { Favorite } from 'src/entities/Favorite.entity';
-import { FavoriteService } from './favorite.service';
+import { OrderItem } from 'src/entities/OrderItems.entity';
+import { Payment } from 'src/entities/Payment.entity';
+import { PaymentService } from './payment.service';
 
 @Crud({
   model: {
-    type: Favorite,
+    type: OrderItem,
   },
   params: {
     id: {
@@ -20,18 +21,17 @@ import { FavoriteService } from './favorite.service';
   query: {
     allow: ['id'],
     join: {
-      user: {
+      inventory: {
         eager: true,
-        allow: ['id', 'firstName', 'lastName', 'email', 'telephone'],
       },
-      product: {
+      'inventory.product': {
         eager: true,
       },
     },
     alwaysPaginate: true,
   },
 })
-@Controller('admin/favorite')
-export class FavoriteAdminController implements CrudController<Favorite> {
-  constructor(public service: FavoriteService) {}
+@Controller('admin/orderItem')
+export class PaymentAdminController implements CrudController<Payment> {
+  constructor(public service: PaymentService) {}
 }
