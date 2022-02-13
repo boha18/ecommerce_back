@@ -9,11 +9,10 @@ export class UserService extends TypeOrmCrudService<User> {
     super(repo);
   }
 
-  async findOneUser(hashed_password: string, email: string): Promise<any> {
+  async findOneUser(email: string, hashed_password: string): Promise<User> {
     let user = await this.repo.findOne({
       where: { email: email, hashed_password: hashed_password },
     });
-    if (user) return true;
-    return false;
+    return user;
   }
 }
