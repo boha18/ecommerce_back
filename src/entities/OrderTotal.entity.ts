@@ -2,6 +2,7 @@ import { Check, Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { OrderItem } from './OrderItems.entity';
 import { Payment } from './Payment.entity';
+import { User } from './User.entity';
 
 @Entity()
 export class OrderTotal extends BaseEntity {
@@ -12,6 +13,9 @@ export class OrderTotal extends BaseEntity {
   description: String;
 
   /* Relations */
+
+  @ManyToOne((type) => User, (user) => user.favorite, { onDelete: 'CASCADE' })
+  user: User;
 
   @OneToMany((type) => OrderItem, (orderItem) => orderItem.orderTotal)
   orderItem: OrderItem[];

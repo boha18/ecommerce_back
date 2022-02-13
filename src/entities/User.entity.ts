@@ -15,9 +15,7 @@ import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
 import { UserPayment } from './UserPayment.entity';
 const bcrypt = require('bcrypt');
-import 'dotenv/config';
 
-console.log(process.env.secret_key);
 @Entity()
 export class User extends BaseEntity {
   @Column({ nullable: false })
@@ -38,10 +36,7 @@ export class User extends BaseEntity {
   @BeforeInsert()
   async hashPassword() {
     //console.log(await bcrypt.genSalt(10));
-    this.hashed_password = await bcrypt.hash(
-      this.hashed_password,
-      '$2b$10$Mf4LNQ//y9kCxTAGTAyyMu',
-    );
+    this.hashed_password = await bcrypt.hash(this.hashed_password, 10);
   }
 
   /* Relations */

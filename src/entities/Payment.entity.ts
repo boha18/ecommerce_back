@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { BaseEntity } from './Base.entity';
 import { OrderTotal } from './OrderTotal.entity';
+import { Product } from './Product.entity';
 
 @Entity()
 export class Payment extends BaseEntity {
