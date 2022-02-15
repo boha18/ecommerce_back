@@ -43,9 +43,9 @@ import { FavoriteDto } from './dto/FavoriteDto';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    'Favorite.userId': 'd171bf63-4434-4467-9e8a-a9860e522fcc',
+    'Favorite.userId': user.id,
   }),
-  persist: (user) => ({ user: { id: 'd171bf63-4434-4467-9e8a-a9860e522fcc' } }),
+  persist: (user) => ({ user: { id: user.id } }),
 })
 @Controller('/user/favorite')
 export class FavoriteUserController implements CrudController<Favorite> {

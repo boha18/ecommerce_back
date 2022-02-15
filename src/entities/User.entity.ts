@@ -5,6 +5,7 @@ import {
   JoinColumn,
   OneToMany,
   OneToOne,
+  Unique,
 } from 'typeorm';
 import { File } from './File.entity';
 import { Address } from './Address.entity';
@@ -15,6 +16,11 @@ import { Notation } from './Notation.entity';
 import { OrderItem } from './OrderItems.entity';
 import { UserPayment } from './UserPayment.entity';
 const bcrypt = require('bcrypt');
+
+export enum UserType {
+  User = 'USER',
+  Admin = 'ADMIN',
+}
 
 @Entity()
 export class User extends BaseEntity {
@@ -29,6 +35,14 @@ export class User extends BaseEntity {
 
   @Column({ nullable: false, unique: true })
   telephone: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserType,
+    default: UserType.User,
+    nullable: false,
+  })
+  userType: string[];
 
   @Column({ nullable: false })
   hashed_password: string;

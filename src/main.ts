@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
@@ -13,9 +14,12 @@ async function bootstrap() {
     .addTag('Ecommerce')
     .addBearerAuth()
     .build();
+  // Enable Decorator Validator
+  app.useGlobalFilters(new QueryFailedExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  app.useGlobalFilters(new QueryFailedExceptionFilter());
+
   await app.listen(3000);
 }
 bootstrap();
