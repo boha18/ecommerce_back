@@ -9,6 +9,8 @@ const { CREATE, UPDATE } = CrudValidationGroups;
 const { ADMIN, USER } = UserType;
 
 const MessErrNotEmpty = ' cannot be empty. Please enter a value';
+console.log(process.env.LOVE);
+
 @Exclude()
 export class CreateOneUser {
   @Expose({ groups: [ADMIN, USER] })
